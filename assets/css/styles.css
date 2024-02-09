@@ -394,7 +394,7 @@ h3,
 }
 
 .calculator-display {
-  overflow: scroll;
+  overflow: hidden;
 }
 
 .btn {
