@@ -232,7 +232,7 @@ button {
   font-size: var(--fs-500);
 }
 
-.calculator-display {
+.calculator-display-section {
   font-size: clamp(2.6rem, 2.287rem + 1.5652vi, var(--fs-900));
 }
 
@@ -343,7 +343,7 @@ h3,
   align-items: flex-end;
   gap: 2.2rem;
 }
-.calculator-display {
+.calculator-display-section {
   padding-block: clamp(0.8rem, 0.5565rem + 1.2174vi, 1.5rem);
   padding-inline: clamp(1.5rem, 1.3261rem + 0.8696vi, 2rem);
   margin-block-end: 1.5rem;
@@ -391,6 +391,10 @@ h3,
   cursor: pointer;
   opacity: 0;
   transition: all 0.2s;
+}
+
+.calculator-display {
+  overflow: scroll;
 }
 
 .btn {
@@ -455,7 +459,7 @@ h3,
 }
 
 .b-radius--sm {
-  border-radius: 0.5rem;
+  border-radius: clamp(0.5rem, 0.3957rem + 0.5217vi, 0.8rem);
 }
 
 /*# sourceMappingURL=styles.css.map */

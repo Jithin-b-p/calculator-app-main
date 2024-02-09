@@ -1,3 +1,3 @@
 .b-radius--sm {
-  border-radius: 0.5rem;
+  border-radius: clamp(0.5rem, 0.3957rem + 0.5217vi, 0.8rem);
 }
