@@ -1,0 +1,66 @@
+.calculator-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1rem, 0.8261rem + 0.8696vi, 1.5rem)
+    clamp(0.8rem, 0.5217rem + 1.3913vi, 1.6rem);
+}
+
+.btn--9 {
+  grid-row: 1 / span 1;
+  grid-column: 3 / span 1;
+}
+.btn--8 {
+  grid-row: 1 / span 1;
+  grid-column: 2 / span 1;
+}
+.btn--7 {
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 1;
+}
+.btn--6 {
+  grid-row: 2 / span 1;
+  grid-column: 3 / span 1;
+}
+.btn--5 {
+  grid-row: 2 / span 1;
+  grid-column: 2 / span 1;
+}
+.btn--4 {
+  grid-row: 2 / span 1;
+  grid-column: 1 / span 1;
+}
+.btn--3 {
+  grid-row: 3 / span 1;
+  grid-column: 3 / span 1;
+}
+.btn--2 {
+  grid-row: 3 / span 1;
+  grid-column: 2 / span 1;
+}
+.btn--1 {
+  grid-row: 3 / span 1;
+  grid-column: 1 / span 1;
+}
+
+.btn--reset {
+  grid-row: 5 / span 1;
+  grid-column: 1 / span 2;
+}
+
+.btn--equal {
+  grid-row: 5 / span 1;
+  grid-column: 3 / span 2;
+}
+
+.btn--decimal {
+  grid-row: 4 / span 1;
+  grid-column: 1 / span 1;
+}
+.btn--0 {
+  grid-row: 4 / span 1;
+  grid-column: 2 / span 1;
+}
+.btn--division {
+  grid-row: 4 / span 1;
+  grid-column: 3 / span 1;
+}

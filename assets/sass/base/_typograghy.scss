@@ -1,0 +1,30 @@
+body {
+  font-family: var(--ff-primary);
+}
+
+button {
+  font-size: var(--fs-800);
+}
+
+.calculator-title {
+  &__heading {
+    font-size: var(--fs-500);
+  }
+}
+
+.calculator-display {
+  // font-size: var(--fs-900);
+  font-size: clamp(2.6rem, 2.287rem + 1.5652vi, var(--fs-900));
+}
+
+h3,
+.theme-toggle__numbering {
+  font-size: 0.8rem;
+}
+
+.btn {
+  &--del,
+  &--reset {
+    font-size: clamp(1.2rem, 1.0609rem + 0.6957vi, 1.6rem);
+  }
+}

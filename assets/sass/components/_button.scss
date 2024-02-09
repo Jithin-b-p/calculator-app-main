@@ -1,0 +1,59 @@
+.btn {
+  padding-block: 0.5rem;
+  background-color: hsl(var(--clr-key-general));
+  color: hsl(var(--clr-key-text-100));
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.2rem 0 hsl(var(--clr-key-general-shadow));
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn:where(:hover, :active, :focus) {
+  background-color: hsl(var(--clr-general-hover, var(--clr-neutral-white)));
+}
+
+.btn {
+  &--equal {
+    color: hsl(var(--clr-key-text-300, var(--clr-neutral-white)));
+    background-color: hsl(
+      var(--clr-equal-h) var(--clr-equal-s) var(--clr-equal-l)
+    );
+    box-shadow: 0 0.2rem 0 hsl(var(--clr-key-equal-shadow));
+  }
+
+  &--del,
+  &--reset {
+    color: hsl(var(--clr-neutral-white));
+    background-color: hsl(
+      var(--clr-reset-h) var(--clr-reset-s) var(--clr-reset-l)
+    );
+    box-shadow: 0 0.2rem 0 hsl(var(--clr-key-reset-shadow));
+  }
+}
+
+.btn--del:where(:hover, :active, :focus),
+.btn--equal:where(:hover, :active, :focus),
+.btn--reset:where(:hover, :active, :focus) {
+  --clr-reset-l: 56%;
+  --clr-equal-l: 61%;
+}
+
+.btn:where(:active, :focus) {
+  transform: translateY(0.2rem);
+  box-shadow: none;
+}
+
+.btn-theme--1 {
+  opacity: 1;
+}
+
+.btn-toggle {
+  background-color: hsl(
+    var(--clr-equal-h) var(--clr-equal-s) var(--clr-equal-l)
+  );
+
+  &:where(:hover, :active, :focus) {
+    --clr-equal-l: 61%;
+  }
+}

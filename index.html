@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+    <meta name="description" content="This is a Calculator App" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Calculator app</title>
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <script defer src="./script.js"></script>
+  </head>
+  <body>
+    <main>
+      <h1 class="sr-only">This is a calculator</h1>
+      <section class="calculator">
+        <div class="calculator-title">
+          <div class="calculator-title__heading">
+            <h2 class="calculator__heading">calc</h2>
+          </div>
+          <div class="calculator-title__theme-change">
+            <h3 class="theme-heading">THEME</h3>
+            <div class="theme-toggle-section">
+              <div class="theme-toggle__numbering">
+                <span class="toggle-1">1</span>
+                <span class="toggle-2">2</span>
+                <span class="toggle-3">3</span>
+              </div>
+
+              <div class="tri-state-toggle">
+                <input
+                  id="theme-1"
+                  class="btn-toggle btn-theme--1"
+                  name="toggle"
+                  type="radio"
+                />
+                <input
+                  id="theme-2"
+                  class="btn-toggle btn-theme--2"
+                  name="toggle"
+                  type="radio"
+                />
+                <input
+                  id="theme-3"
+                  class="btn-toggle btn-theme--3"
+                  name="toggle"
+                  type="radio"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="calculator-display b-radius--sm">
+          <p>0</p>
+        </div>
+        <div class="calculator-buttons b-radius--sm">
+          <button id="btn-0" class="btn btn--0">0</button
+          ><button id="btn-1" class="btn btn--1">1</button
+          ><button id="btn-2" class="btn btn--2">2</button
+          ><button id="btn-3" class="btn btn--3">3</button
+          ><button id="btn-4" class="btn btn--4">4</button
+          ><button id="btn-5" class="btn btn--5">5</button
+          ><button id="btn-6" class="btn btn--6">6</button
+          ><button id="btn-7" class="btn btn--7">7</button
+          ><button id="btn-8" class="btn btn--8">8</button
+          ><button id="btn-9" class="btn btn--9">9</button
+          ><button id="btn-decimal" class="btn btn--decimal">.</button
+          ><button id="btn-del" class="btn btn--del">DEL</button
+          ><button id="btn-addition" class="btn btn--addition">+</button
+          ><button id="btn-substraction" class="btn btn--substraction">-</button
+          ><button id="btn-multiplication" class="btn btn--multiplication">
+            x</button
+          ><button id="btn-division" class="btn btn--division">/</button
+          ><button id="btn-reset" class="btn btn--reset">RESET</button
+          ><button id="btn-equal" class="btn btn--equal">=</button>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

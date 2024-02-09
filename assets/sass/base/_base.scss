@@ -1,0 +1,11 @@
+body {
+  color: hsl(var(--clr-neutral-white));
+  background-color: hsl(var(--clr-background-100));
+}
+
+main {
+  min-height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

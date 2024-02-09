@@ -1,0 +1,14 @@
+{
+  "name": "calculator-app-main",
+  "version": "1.0.0",
+  "description": "This is a calculator app",
+  "main": "index.js",
+  "scripts": {
+    "watch:sass": "sass ./assets/sass/main.scss ./assets/css/styles.css -w"
+  },
+  "author": "Jithin B P",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.70.0"
+  }
+}

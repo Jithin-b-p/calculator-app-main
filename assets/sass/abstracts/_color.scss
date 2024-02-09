@@ -1,0 +1,140 @@
+// ### Backgrounds
+
+// - Very dark desaturated blue (main background): hsl(222, 26%, 31%)
+// - Very dark desaturated blue (toggle background, keypad background): hsl(223, 31%, 20%)
+// - Very dark desaturated blue (screen background): hsl(224, 36%, 15%)
+
+// #### Keys
+
+// - Desaturated dark blue (key background): hsl(225, 21%, 49%)
+// - Desaturated dark blue (key shadow): hsl(224, 28%, 35%)
+
+// - Red (key background, toggle): hsl(6, 63%, 50%)
+// - Dark red (key shadow): hsl(6, 70%, 34%)
+
+// - Light grayish orange (key background): hsl(30, 25%, 89%)
+// - Grayish orange (key shadow): hsl(28, 16%, 65%)
+
+// #### Text
+
+// - Very dark grayish blue: hsl(221, 14%, 31%)
+// - White: hsl(0, 0%, 100%)
+
+:root {
+  --clr-background-100: 222 26% 31%;
+  --clr-background-200: 223 31% 20%;
+  --clr-background-300: 224 36% 15%;
+
+  --clr-neutral-white: 0 0% 100%;
+
+  --clr-key-general: 30 25% 89%;
+  --clr-key-general-shadow: 28 16% 65%;
+
+  --clr-equal-h: 6;
+  --clr-equal-s: 63%;
+  --clr-equal-l: 50%;
+  --clr-key-equal-shadow: 6 70% 34%;
+
+  --clr-reset-h: 225;
+  --clr-reset-s: 21%;
+  --clr-reset-l: 49%;
+
+  --clr-key-reset-shadow: 224 28% 35%;
+
+  --clr-key-text-100: 221 14% 31%;
+  --clr-key-text-200: 0 0% 100%;
+}
+
+/*
+#### Backgrounds
+
+- Light gray (main background): hsl(0, 0%, 90%)
+- Grayish red (toggle background, keypad background): hsl(0, 5%, 81%)
+- Very light gray (screen background): hsl(0, 0%, 93%)
+
+#### Keys
+
+- Dark moderate cyan (key background): hsl(185, 42%, 37%)
+- Very dark cyan (key shadow): hsl(185, 58%, 25%)
+
+- Orange (key background, toggle): hsl(25, 98%, 40%)
+- Dark orange (key shadow): hsl(25, 99%, 27%)
+
+- Light grayish yellow (key background): hsl(45, 7%, 89%)
+- Dark grayish orange (key shadow): hsl(35, 11%, 61%)
+
+#### Text
+
+- Very dark grayish yellow: hsl(60, 10%, 19%)
+- White (text): hsl(0, 0%, 100%)
+*/
+
+[data-theme="2"] {
+  --clr-background-100: 0 0% 90%;
+  --clr-background-200: 0 5% 81%;
+  --clr-background-300: 0 0% 93%;
+
+  --clr-key-general: 45 7% 89%;
+  --clr-key-general-shadow: 35 11% 61%;
+
+  --clr-equal-h: 25;
+  --clr-equal-s: 98%;
+  --clr-equal-l: 40%;
+  --clr-key-equal-shadow: 25 99% 27%;
+
+  --clr-reset-h: 185;
+  --clr-reset-s: 42%;
+  --clr-reset-l: 37%;
+  --clr-key-reset-shadow: 185 58% 25%;
+
+  --clr-key-text-100: 60 10% 19%;
+  --clr-key-text-200: 60 10% 19%;
+}
+
+/*
+#### Backgrounds
+
+- Very dark violet (main background): hsl(268, 75%, 9%)
+- Very dark violet (toggle background, keypad background, screen background): hsl(268, 71%, 12%)
+
+#### Keys
+
+- Dark violet (key background): hsl(281, 89%, 26%)
+- Vivid magenta (key shadow): hsl(285, 91%, 52%)
+
+- Pure cyan (key background, toggle): hsl(176, 100%, 44%)
+- Soft cyan (key shadow): hsl(177, 92%, 70%)
+
+- Very dark violet (key background): hsl(268, 47%, 21%)
+- Dark magenta (key shadow): hsl(290, 70%, 36%)
+
+#### Text
+
+- Light yellow: hsl(52, 100%, 62%)
+- Very dark blue: hsl(198, 20%, 13%)
+- White (text): hsl(0, 0%, 100%)
+*/
+
+[data-theme="3"] {
+  --clr-background-100: 268 75% 9%;
+  --clr-background-200: 268 71% 12%;
+  --clr-background-300: 268 71% 12%;
+
+  --clr-key-general: 268 47% 21%;
+  --clr-key-general-shadow: 290 70% 36%;
+  --clr-general-hover: 268 54% 44%;
+
+  --clr-equal-h: 176;
+  --clr-equal-s: 100%;
+  --clr-equal-l: 44%;
+  --clr-key-equal-shadow: 177 92% 70%;
+
+  --clr-reset-h: 281;
+  --clr-reset-s: 89%;
+  --clr-reset-l: 26%;
+  --clr-key-reset-shadow: 285 91% 52%;
+
+  --clr-key-text-100: 52 100% 62%;
+  --clr-key-text-200: 52 100% 62%;
+  --clr-key-text-300: 198 20% 13%;
+}
