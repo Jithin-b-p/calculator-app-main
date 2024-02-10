@@ -1,5 +1,10 @@
 const toggleBtns = document.querySelectorAll("input[class*=btn-theme--]");
 const btnContainer = document.querySelector(".tri-state-toggle");
+const calcBtnContainer = document.querySelector(".calculator-buttons");
+const calcDisplay = document.querySelector(".calculator-display");
+
+const operators = new Set(["+", "-", "x", "/"]);
+const REGEX = /(\d)(?=(?:\d{3})+(?!\d))/g;
 
 btnContainer.addEventListener("click", (e) => {
   if (e.target.classList.contains("btn-theme--1")) {
@@ -22,14 +27,6 @@ btnContainer.addEventListener("click", (e) => {
     document.querySelector(".btn-theme--3").style.opacity = 1;
   }
 });
-
-const calcBtnContainer = document.querySelector(".calculator-buttons");
-const calcDisplay = document.querySelector(".calculator-display");
-
-const operators = new Set(["+", "-", "x", "/"]);
-const REGEX = /(\d)(?=(?:\d{3})+(?!\d))/g;
-// const REGEX = /(?<!\.)(\d)(?=(?:\d{3})+(?!\d))/g;
-// const REGEX = /(?<!\.)(\d{3})(?!\d{3}|\.\d)/g;
 
 let displayValue = "";
 let canIncludeDecimal = true;
@@ -97,21 +94,21 @@ calcBtnContainer.addEventListener("click", (e) => {
       ) {
         let x = displayValue.split("+").at(0);
         let y = displayValue.split("+").at(1);
-        displayValue = Number(x) + Number(y);
+        displayValue = (Number(x) + Number(y)).toPrecision(4) / 1;
       } else if (
         displayValueArray.includes("-") &&
         displayValueArray[displayValueArray.length - 1] !== "-"
       ) {
         let x = displayValue.split("-").at(0);
         let y = displayValue.split("-").at(1);
-        displayValue = Number(x) - Number(y);
+        displayValue = (Number(x) - Number(y)).toPrecision(4) / 1;
       } else if (
         displayValueArray.includes("x") &&
         displayValueArray[displayValueArray.length - 1] !== "x"
       ) {
         let x = displayValue.split("x").at(0);
         let y = displayValue.split("x").at(1);
-        displayValue = Number(x) * Number(y);
+        displayValue = (Number(x) * Number(y)).toPrecision(4) / 1;
       } else if (
         displayValueArray.includes("/") &&
         displayValueArray[displayValueArray.length - 1] !== "/"
@@ -123,7 +120,7 @@ calcBtnContainer.addEventListener("click", (e) => {
           displayValue = "math error";
         } else {
           let ans = Number(x) / Number(y);
-          displayValue = Number.isInteger(ans) ? ans : ans.toPrecision(10) / 1;
+          displayValue = Number.isInteger(ans) ? ans : ans.toPrecision(4) / 1;
         }
       } else {
         return;
@@ -140,28 +137,30 @@ calcBtnContainer.addEventListener("click", (e) => {
         if (operators.has(displayValueArray[displayValueArray.length - 1])) {
           return;
         }
+
         canIncludeDecimal = true;
+
         if (
           displayValueArray.includes("+") &&
           displayValueArray[displayValueArray.length - 1] !== "+"
         ) {
           let x = displayValue.split("+").at(0);
           let y = displayValue.split("+").at(1);
-          displayValue = Number(x) + Number(y);
+          displayValue = (Number(x) + Number(y)).toPrecision(4) / 1;
         } else if (
           displayValueArray.includes("-") &&
           displayValueArray[displayValueArray.length - 1] !== "-"
         ) {
           let x = displayValue.split("-").at(0);
           let y = displayValue.split("-").at(1);
-          displayValue = Number(x) - Number(y);
+          displayValue = (Number(x) - Number(y)).toPrecision(4) / 1;
         } else if (
           displayValueArray.includes("x") &&
           displayValueArray[displayValueArray.length - 1] !== "x"
         ) {
           let x = displayValue.split("x").at(0);
           let y = displayValue.split("x").at(1);
-          displayValue = Number(x) * Number(y);
+          displayValue = (Number(x) * Number(y)).toPrecision(4) / 1;
         } else if (
           displayValueArray.includes("/") &&
           displayValueArray[displayValueArray.length - 1] !== "/"
@@ -177,13 +176,20 @@ calcBtnContainer.addEventListener("click", (e) => {
           }
         }
 
+        if (displayValue.toString().charAt(0) === "-") {
+          calcDisplay.innerText = displayValue + "=";
+          displayValue = "";
+          return;
+        }
+
         if (displayValueArray[displayValueArray.length - 1] === "=") {
-          displayValue = displayValue.slice(0, -1);
+          displayValue = displayValue.toString().slice(0, -1);
         }
       }
     }
 
     displayValue += e.target.innerText;
+    console.log(displayValue);
     const arr = displayValue.split("");
 
     if (arr.includes(".")) {
@@ -201,7 +207,7 @@ calcBtnContainer.addEventListener("click", (e) => {
           calcDisplay.innerText += ".";
         }
         return;
-      } else if (arr.includes("-")) {
+      } else if (arr.includes("-") && arr[0] !== "-") {
         const [num1, num2] = displayValue.split("-");
         const [integerPartOfnum1, decimalPartOfnum1] = num1.split(".");
         const [integerPartOfnum2, decimalPartOfnum2] = num2.split(".");
@@ -252,7 +258,7 @@ calcBtnContainer.addEventListener("click", (e) => {
       }
     }
 
-    calcDisplay.innerText = displayValue.replace(REGEX, "$1,");
+    calcDisplay.innerText = formatNumber(displayValue.toString());
   }
 });
 
