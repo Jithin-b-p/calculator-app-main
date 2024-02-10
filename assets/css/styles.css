@@ -394,7 +394,13 @@ h3,
 }
 
 .calculator-display {
-  overflow: hidden;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.calculator-display::-webkit-scrollbar {
+  display: none;
 }
 
 .btn {

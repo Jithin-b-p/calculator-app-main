@@ -27,6 +27,9 @@ const calcBtnContainer = document.querySelector(".calculator-buttons");
 const calcDisplay = document.querySelector(".calculator-display");
 
 const operators = new Set(["+", "-", "x", "/"]);
+const REGEX = /(\d)(?=(?:\d{3})+(?!\d))/g;
+// const REGEX = /(?<!\.)(\d)(?=(?:\d{3})+(?!\d))/g;
+// const REGEX = /(?<!\.)(\d{3})(?!\d{3}|\.\d)/g;
 
 let displayValue = "";
 let canIncludeDecimal = true;
@@ -36,20 +39,25 @@ calcBtnContainer.addEventListener("click", (e) => {
   if (target.contains("btn")) {
     const displayValueArray = displayValue.split("");
 
-    if (target.contains("btn--decimal")) {
-      if (displayValueArray[displayValueArray.length - 1] === "=") return;
-      if (!canIncludeDecimal) return;
-      if (displayValue === "") {
-        canIncludeDecimal = false;
-        displayValue = "0";
-        calcDisplay.innerText = displayValue;
+    if (target.contains("btn--0")) {
+      if (calcDisplay.innerHTML === "0") {
         return;
       }
-      canIncludeDecimal = false;
+    }
+    if (target.contains("btn--decimal")) {
+      if (!canIncludeDecimal) return;
+      if (displayValueArray[displayValueArray.length - 1] === "=") return;
+      if (displayValue === "" || calcDisplay.innerHTML === "0") {
+        canIncludeDecimal = false;
+        displayValue = "0";
+      } else {
+        canIncludeDecimal = false;
+      }
     }
 
     if (target.contains("btn--reset")) {
       displayValue = "";
+      canIncludeDecimal = true;
       calcDisplay.innerText = "0";
       return;
     }
@@ -57,11 +65,21 @@ calcBtnContainer.addEventListener("click", (e) => {
     if (target.contains("btn--del")) {
       if (!displayValueArray.length) displayValue = "";
 
-      if (displayValueArray[displayValueArray.length - 1] === "=")
+      if (displayValueArray[displayValueArray.length - 1] === "=") {
+        if (displayValueArray[displayValueArray.length - 2] === ".") {
+          canIncludeDecimal = true;
+        }
         displayValue = displayValue.slice(0, -2);
-      else displayValue = displayValue.slice(0, -1);
+      } else {
+        if (displayValueArray[displayValueArray.length - 1] === ".") {
+          canIncludeDecimal = true;
+        }
+        displayValue = displayValue.slice(0, -1);
+      }
 
-      calcDisplay.innerText = displayValue ? displayValue : "0";
+      calcDisplay.innerText = displayValue
+        ? displayValue.toString().replace(REGEX, "$1,")
+        : "0";
       return;
     }
 
@@ -71,6 +89,7 @@ calcBtnContainer.addEventListener("click", (e) => {
     ) {
       displayValue = "";
     }
+
     if (target.contains("btn--equal")) {
       if (
         displayValueArray.includes("+") &&
@@ -101,7 +120,7 @@ calcBtnContainer.addEventListener("click", (e) => {
         let y = displayValue.split("/").at(1);
 
         if (Number(y) === 0) {
-          displayValue = "Math error";
+          displayValue = "math error";
         } else {
           let ans = Number(x) / Number(y);
           displayValue = Number.isInteger(ans) ? ans : ans.toPrecision(10) / 1;
@@ -118,10 +137,10 @@ calcBtnContainer.addEventListener("click", (e) => {
     ) {
       if (target.contains("btn-operator")) {
         if (displayValue === "") return;
-        canIncludeDecimal = true;
         if (operators.has(displayValueArray[displayValueArray.length - 1])) {
           return;
         }
+        canIncludeDecimal = true;
         if (
           displayValueArray.includes("+") &&
           displayValueArray[displayValueArray.length - 1] !== "+"
@@ -164,10 +183,79 @@ calcBtnContainer.addEventListener("click", (e) => {
       }
     }
 
-    if (displayValue !== "") {
-      console.log(Number(displayValueArray[displayValueArray.length - 1]));
-    }
     displayValue += e.target.innerText;
-    calcDisplay.innerText = displayValue;
+    const arr = displayValue.split("");
+
+    if (arr.includes(".")) {
+      if (arr.includes("+")) {
+        const [num1, num2] = displayValue.split("+");
+        const [integerPartOfnum1, decimalPartOfnum1] = num1.split(".");
+        const [integerPartOfnum2, decimalPartOfnum2] = num2.split(".");
+
+        calcDisplay.innerText = `${formatNumber(
+          integerPartOfnum1
+        )}.${decimalPartOfnum1}+${formatNumber(integerPartOfnum2)}${
+          decimalPartOfnum2 ? "." + decimalPartOfnum2 : ""
+        }`;
+        if (num2.charAt(num2.length - 1) === ".") {
+          calcDisplay.innerText += ".";
+        }
+        return;
+      } else if (arr.includes("-")) {
+        const [num1, num2] = displayValue.split("-");
+        const [integerPartOfnum1, decimalPartOfnum1] = num1.split(".");
+        const [integerPartOfnum2, decimalPartOfnum2] = num2.split(".");
+
+        calcDisplay.innerText = `${formatNumber(
+          integerPartOfnum1
+        )}.${decimalPartOfnum1}-${formatNumber(integerPartOfnum2)}${
+          decimalPartOfnum2 ? "." + decimalPartOfnum2 : ""
+        }`;
+        if (num2.charAt(num2.length - 1) === ".") {
+          calcDisplay.innerText += ".";
+        }
+        return;
+      } else if (arr.includes("x")) {
+        const [num1, num2] = displayValue.split("x");
+        const [integerPartOfnum1, decimalPartOfnum1] = num1.split(".");
+        const [integerPartOfnum2, decimalPartOfnum2] = num2.split(".");
+
+        calcDisplay.innerText = `${formatNumber(
+          integerPartOfnum1
+        )}.${decimalPartOfnum1}x${formatNumber(integerPartOfnum2)}${
+          decimalPartOfnum2 ? "." + decimalPartOfnum2 : ""
+        }`;
+        if (num2.charAt(num2.length - 1) === ".") {
+          calcDisplay.innerText += ".";
+        }
+        return;
+      } else if (arr.includes("/")) {
+        const [num1, num2] = displayValue.split("/");
+        const [integerPartOfnum1, decimalPartOfnum1] = num1.split(".");
+        const [integerPartOfnum2, decimalPartOfnum2] = num2.split(".");
+
+        calcDisplay.innerText = `${formatNumber(
+          integerPartOfnum1
+        )}.${decimalPartOfnum1}/${formatNumber(integerPartOfnum2)}${
+          decimalPartOfnum2 ? "." + decimalPartOfnum2 : ""
+        }`;
+        if (num2.charAt(num2.length - 1) === ".") {
+          calcDisplay.innerText += ".";
+        }
+        return;
+      } else {
+        if (arr[arr.length - 1] !== ".") {
+          const [integerPart, decimalPart] = displayValue.split(".");
+          calcDisplay.innerText = `${formatNumber(integerPart)}.${decimalPart}`;
+          return;
+        }
+      }
+    }
+
+    calcDisplay.innerText = displayValue.replace(REGEX, "$1,");
   }
 });
+
+function formatNumber(num) {
+  return num.toString().replace(REGEX, "$1,");
+}
